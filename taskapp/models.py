@@ -5,14 +5,14 @@ from django.contrib.auth.models import User
 
 class Task(models.Model):
     PRIORITY_CHOICES = [
-        ("Low", "Низький пріорітет")
-        ("Medium", "Середній пріорітет")
-        ("High", "Високий пріорітет")
+        ("Low", "Низький пріорітет"),
+        ("Medium", "Середній пріорітет"),
+        ("High", "Високий пріорітет"),
     ]
     STATUS_CHOICES = [
-        ("Pending", "Потрібно виконати")
-        ("In-progress", "В процесі")
-        ("Done", "Виконано")
+        ("Pending", "Потрібно виконати"),
+        ("In-progress", "В процесі"),
+        ("Done", "Виконано"),
 
     ]
     name = models.CharField(max_length=100, verbose_name="Назва задачі")
