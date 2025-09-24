@@ -1,0 +1,44 @@
+{% extends 'task_list.html' %}
+
+{% block content %}
+<h1>Нове завдання</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_div}}
+        <button type="submit">
+            Створити задачу
+        </button>
+    </form>
+
+{% endblock content %}
+
+{% block content %}
+<div class="container">
+    <h1>Список задач</h1>
+    <div class="list-group">
+        {% for task in tasks %}
+            <a href="{% url 'update_task' task.id %}" class="gap-2 align-items-center d-flex list-group-item list-group-item-action mt-2">
+                <b>{{ task.title }}</b>
+                <span class="badge text-bg-info">{{ task.priority }}</span>
+                {% if task.deadline %}
+                    <span class="ms-auto">{{ task.deadline|date:"d.m.Y" }}</span>
+                {% else %}
+                    <i class="ms-auto bi bi-calendar2-x-fill"></i>
+                {% endif %}
+            </a>
+        {% endfor %}
+    </div>
+
+    <a href="{% url 'create_task' %}" class="btn btn-primary">Створити задачу</a>
+</div>
+
+{% if user.is_authenticated %}
+    <form action="{% url 'logout' %}" method="post" class="position-absolute top-0 end-0 p-3">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-secondary">
+            <i class="bi bi-box-arrow-left me-2"></i>Вийти
+        </button>
+    </form>
+{% endif %}
+
+{% endblock content %}
