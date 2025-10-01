@@ -8,12 +8,12 @@
         {% csrf_token %}
         {{form.as_div}}
         <button type="submit">
-            Створити задачу
+            Фільтрувати
         </button>
     </form>
     <div class="list-group">
         {% for task in tasks %}
-            <a href="" class="gap-2 align-items-center d-flex list-group-item list-group-item-action mt-2">
+            <a href="{% url 'task_update' task.id %}" class="gap-2 align-items-center d-flex list-group-item list-group-item-action mt-2">
                 <b>{{ task.name }}</b>
                 <span class="badge text-bg-info">{{ task.priority }}</span>
                 {% if task.deadline %}
@@ -25,7 +25,7 @@
         {% endfor %}
     </div>
 
-    <a href="" class="btn btn-primary">Створити задачу</a>
+    <a href="{% url 'task_create' %}" class="btn btn-primary">Створити задачу</a>
 </div>
 
 {% if user.is_authenticated %}
