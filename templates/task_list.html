@@ -4,9 +4,9 @@
 
 <div class="container">
     <h1>Список задач</h1>
-    <form method="post">
+    <form method="get">
         {% csrf_token %}
-        {{form.as_div}}
+        {{filter_form.as_div}}
         <button type="submit">
             Фільтрувати
         </button>
@@ -25,16 +25,8 @@
         {% endfor %}
     </div>
 
-    <a href="{% url 'task_create' %}" class="btn btn-primary">Створити задачу</a>
+    <a href="{% url 'task_create' %}" class="btn btn-primary mt-4">Створити задачу</a>
 </div>
 
-{% if user.is_authenticated %}
-    <form action="" method="post" class="position-absolute top-0 end-0 p-3">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-outline-secondary">
-            <i class="bi bi-box-arrow-left me-2"></i>Вийти
-        </button>
-    </form>
-{% endif %}
 
 {% endblock content %}

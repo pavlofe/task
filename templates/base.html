@@ -9,6 +9,15 @@
 </head>
 <body>
 <div class="container mt-4">
+    {% if user.is_authenticated %}
+    <form action="{% url 'logout' %}" method="post" class="position-absolute top-0 end-0 p-3">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-secondary">
+            <i class="bi bi-box-arrow-left me-2"></i>Вийти
+        </button>
+    </form> 
+{% endif %}
+
     {% block content %}
 
     {% endblock %}
