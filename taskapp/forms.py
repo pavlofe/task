@@ -30,7 +30,16 @@ class FilterForm(forms.Form):
         ("Done", "Виконано"),
 
     ]
-    
+
    
     priority = forms.ChoiceField(choices=PRIORITY_CHOICES, label='Пріоритет', required=False)
     status = forms.ChoiceField(choices=STATUS_CHOICES, label='Статус', required=False)
+
+      
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({'class': 'form-control mb-2', })
+
+      

@@ -12,6 +12,12 @@ class TaskListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         task_list = Task.objects.filter(user = self.request.user).all()
+        status = self.request.GET.get('status', '')
+        priority = self.request.GET.get('priority', '')
+        if status:
+            task_list = task_list.filter(status=status)
+        if priority:
+            task_list = task_list.filter(priority=priority)
         return task_list
     
     def get_context_data(self, **kwargs):

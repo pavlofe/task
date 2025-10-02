@@ -4,10 +4,10 @@
 
 <div class="container">
     <h1>Список задач</h1>
-    <form method="get">
+    <form method="get" class="d-flex align-items-center gap-2">
         {% csrf_token %}
         {{filter_form.as_div}}
-        <button type="submit">
+        <button type="submit" class="btn btn-primary mt-3">
             Фільтрувати
         </button>
     </form>
